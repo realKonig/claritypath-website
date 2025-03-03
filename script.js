@@ -1,3 +1,31 @@
+// Initialize AOS with custom settings
+AOS.init({
+    duration: 800,
+    easing: 'cubic-bezier(0.2, 1, 0.3, 1)',
+    once: true,
+    offset: 100,
+    delay: 100
+});
+
+// Add scroll-based animation triggers
+document.addEventListener('DOMContentLoaded', function() {
+    // Intersection Observer for section titles
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('aos-animate');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    // Observe all section titles
+    document.querySelectorAll('.section-title').forEach(title => {
+        observer.observe(title);
+    });
+});
+
 // Initialize AOS (Animate On Scroll)
 window.addEventListener('load', function() {
     // Initialize AOS with a slight delay to ensure proper loading
@@ -13,12 +41,27 @@ window.addEventListener('load', function() {
     // Mobile menu functionality
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
+    const menuIcon = mobileMenuBtn.querySelector('i');
     
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', () => {
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
             navLinks.classList.toggle('active');
+            menuIcon.classList.toggle('fa-bars');
+            menuIcon.classList.toggle('fa-times');
         });
     }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mobileMenuBtn.contains(e.target) && !navLinks.contains(e.target)) {
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            navLinks.classList.remove('active');
+            menuIcon.classList.add('fa-bars');
+            menuIcon.classList.remove('fa-times');
+        }
+    });
 
     // Header scroll effect
     const header = document.querySelector('header');
@@ -113,4 +156,67 @@ function animateValue(obj, start, end, duration) {
         }
     };
     window.requestAnimationFrame(step);
-} 
+}
+
+// Form Validation and Enhancement
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    // Add form validation feedback
+    const inputs = contactForm.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('invalid', (e) => {
+            e.preventDefault();
+            const formGroup = input.closest('.form-group');
+            if (!formGroup.querySelector('.error-message')) {
+                const error = document.createElement('div');
+                error.className = 'error-message';
+                error.textContent = input.validationMessage;
+                formGroup.appendChild(error);
+            }
+        });
+
+        input.addEventListener('input', () => {
+            const formGroup = input.closest('.form-group');
+            const error = formGroup.querySelector('.error-message');
+            if (error) {
+                error.remove();
+            }
+        });
+    });
+
+    // Add loading state to submit button
+    contactForm.addEventListener('submit', (e) => {
+        const submitButton = contactForm.querySelector('.submit-button');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+    });
+}
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Add keyboard navigation support for feature and benefit cards
+const cards = document.querySelectorAll('.feature-card, .benefit-item, .pricing-card');
+cards.forEach(card => {
+    card.setAttribute('tabindex', '0');
+    card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const link = card.querySelector('a');
+            if (link) {
+                link.click();
+            }
+        }
+    });
+}); 

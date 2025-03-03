@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /thanks.html
+Allow: /assets/
+Disallow: /assets/private/
+Disallow: /.git/
+
+Sitemap: https://realKonig.github.io/ai/sitemap.xml 
