@@ -1,15 +1,19 @@
 /* Global Styles */
 :root {
-    --primary-color: #2563eb;
-    --secondary-color: #1e40af;
+    --primary-color: #1a1a1a;
+    --secondary-color: #2d2d2d;
     --accent-color: #3b82f6;
-    --text-color: #1f2937;
-    --light-text: #6b7280;
-    --background: #ffffff;
-    --light-background: #f3f4f6;
+    --text-color: #ffffff;
+    --light-text: #a3a3a3;
+    --background: #1a1a1a;
+    --light-background: #2d2d2d;
     --border-radius: 8px;
     --transition: all 0.3s ease;
     --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --highlight-blue: #3b82f6;
+    --highlight-purple: #8b5cf6;
+    --card-bg: #242424;
+    --input-bg: rgba(255, 255, 255, 0.05);
 }
 
 * {
@@ -28,7 +32,7 @@ body {
 
 /* Header & Navigation */
 header {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(26, 26, 26, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: fixed;
@@ -39,7 +43,7 @@ header {
 }
 
 header.scrolled {
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(26, 26, 26, 0.98);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -55,7 +59,7 @@ nav {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--text-color);
     transition: var(--transition);
 }
 
@@ -100,7 +104,7 @@ nav {
 
 /* Hero Section */
 .hero {
-    background: var(--gradient);
+    background: var(--primary-color);
     color: white;
     padding: 8rem 2rem 4rem;
     text-align: center;
@@ -169,8 +173,8 @@ nav {
 .cta-button {
     display: inline-block;
     padding: 1rem 2rem;
-    background: white;
-    color: var(--primary-color);
+    background: var(--highlight-blue);
+    color: white;
     text-decoration: none;
     border-radius: var(--border-radius);
     font-weight: 600;
@@ -220,7 +224,7 @@ nav {
 }
 
 .feature-card {
-    background: white;
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: var(--border-radius);
     text-align: center;
@@ -228,6 +232,7 @@ nav {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .feature-card::before {
@@ -248,12 +253,12 @@ nav {
 
 .feature-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
 }
 
 .feature-card i {
     font-size: 2.5rem;
-    color: var(--primary-color);
+    color: var(--highlight-blue);
     margin-bottom: 1rem;
 }
 
@@ -273,12 +278,13 @@ nav {
     content: '→';
     position: absolute;
     left: 0;
-    color: var(--primary-color);
+    color: var(--highlight-blue);
 }
 
 /* Benefits Section */
 .benefits {
     padding: 6rem 2rem;
+    background: var(--background);
 }
 
 .benefits h2 {
@@ -298,20 +304,21 @@ nav {
 .benefit-item {
     text-align: center;
     padding: 2rem;
-    background: white;
+    background: var(--card-bg);
     border-radius: var(--border-radius);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .benefit-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
 }
 
 .benefit-item i {
     font-size: 2.5rem;
-    color: var(--primary-color);
+    color: var(--highlight-blue);
     margin-bottom: 1rem;
 }
 
@@ -331,7 +338,7 @@ nav {
     content: '✓';
     position: absolute;
     left: 0;
-    color: var(--primary-color);
+    color: var(--highlight-blue);
 }
 
 /* Pricing Section */
@@ -355,18 +362,19 @@ nav {
 }
 
 .pricing-card {
-    background: white;
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: var(--border-radius);
     text-align: center;
     transition: var(--transition);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .pricing-card.featured {
     transform: scale(1.05);
-    border: 2px solid var(--primary-color);
+    border: 2px solid var(--highlight-blue);
 }
 
 .popular-badge {
@@ -374,7 +382,7 @@ nav {
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--primary-color);
+    background: var(--highlight-blue);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -384,13 +392,13 @@ nav {
 
 .pricing-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
 }
 
 .price {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--highlight-blue);
     margin: 1rem 0;
 }
 
@@ -409,13 +417,13 @@ nav {
     content: '✓';
     position: absolute;
     left: 0;
-    color: var(--primary-color);
+    color: var(--highlight-blue);
 }
 
 .pricing-button {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    background: var(--primary-color);
+    background: var(--highlight-blue);
     color: white;
     text-decoration: none;
     border-radius: var(--border-radius);
@@ -440,13 +448,13 @@ nav {
 }
 
 .pricing-button:hover {
-    background: var(--secondary-color);
+    background: var(--highlight-purple);
 }
 
 /* Contact Section */
 .contact {
     padding: 6rem 2rem;
-    background: var(--gradient);
+    background: var(--primary-color);
     color: white;
 }
 
@@ -462,7 +470,7 @@ nav {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--input-bg);
     padding: 2rem;
     border-radius: var(--border-radius);
     backdrop-filter: blur(10px);
@@ -479,10 +487,10 @@ nav {
 .contact-form select,
 .contact-form textarea {
     padding: 1rem;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
     font-size: 1rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--input-bg);
     color: var(--text-color);
     transition: all 0.3s ease;
 }
@@ -499,8 +507,8 @@ nav {
 .contact-form select:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: white;
-    background: white;
+    border-color: var(--highlight-blue);
+    background: var(--input-bg);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -513,8 +521,8 @@ nav {
 
 .submit-button {
     padding: 1rem;
-    background: white;
-    color: var(--primary-color);
+    background: var(--highlight-blue);
+    color: white;
     border: none;
     border-radius: var(--border-radius);
     font-size: 1rem;
@@ -685,7 +693,7 @@ footer {
     background: linear-gradient(
         45deg,
         transparent,
-        rgba(255, 255, 255, 0.1),
+        rgba(59, 130, 246, 0.2),
         transparent
     );
     transform: rotate(45deg);
