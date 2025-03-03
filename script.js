@@ -37,24 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         lastScroll = currentScroll;
     });
-
-    // Form submission handler
-    const contactForm = document.querySelector('.contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // Here you would typically send the data to your backend
-            // For now, we'll just show a success message
-            alert('Thank you for your interest! We will contact you shortly.');
-            contactForm.reset();
-        });
-    }
     
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
