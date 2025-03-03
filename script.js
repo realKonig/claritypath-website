@@ -1,10 +1,14 @@
 // Initialize AOS (Animate On Scroll)
-document.addEventListener('DOMContentLoaded', function() {
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 100
-    });
+window.addEventListener('load', function() {
+    // Initialize AOS with a slight delay to ensure proper loading
+    setTimeout(() => {
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+            disable: 'mobile'
+        });
+    }, 100);
 
     // Mobile menu functionality
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
