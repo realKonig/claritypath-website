@@ -1,10 +1,12 @@
 // Initialize AOS with custom settings
-AOS.init({
-    duration: 800,
-    easing: 'cubic-bezier(0.2, 1, 0.3, 1)',
-    once: true,
-    offset: 100,
-    delay: 100
+document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+        duration: 800,
+        easing: 'ease-out',
+        once: true,
+        offset: 50,
+        delay: 100
+    });
 });
 
 // Add scroll-based animation triggers
