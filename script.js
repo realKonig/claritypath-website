@@ -87,6 +87,18 @@ window.addEventListener('load', function() {
     }, observerOptions);
 
     stats.forEach(stat => observer.observe(stat));
+
+    // Add subtle interaction sounds
+    const interactionSound = new Audio('data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+M4wAAAAAAAAAAAAEluZm8AAAAPAAAAAwAAAbAAkJCQkJCQkJCQkJCQkJCQkJCQwMDAwMDAwMDAwMDAwMDAwMDAwODg4ODg4ODg4ODg4ODg4ODg4OD///////////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAYAAAAAAAAAAbC+xtirAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+MYxAAJCAGJGUEQABBGkGJ3t/99yBBiD/v+b//6v///+bZvz7V+z+f7P+f8O5/f8O5+XyT5/L5fL5fL5f8AAAABJLf/7P///+z/n///Z/z7n/Pvz7//8u5/L5fL5fL5f8AAAAAAAAAAAABJLf/7P///+z/n///Z/z7n/Pvz7//8u5/L5fL5fL5f8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+MYxBYJqAGFGUEQAAAAABJLf/7P///+z/n///Z/z7n/Pvz7//8u5/L5fL5fL5f8AAAAAAAAAAAABJLf/7P///+z/n///Z/z7n/Pvz7//8u5/L5fL5fL5f8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+    interactionSound.volume = 0.2;  // Set volume to 20%
+
+    // Add sound to interactive elements
+    document.querySelectorAll('.cta-button, .pricing-button, .submit-button, .feature-card').forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            interactionSound.currentTime = 0;
+            interactionSound.play().catch(e => console.log('Sound play prevented'));
+        });
+    });
 });
 
 // Counter animation function

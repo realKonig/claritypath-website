@@ -462,32 +462,53 @@ nav {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     padding: 2rem;
     border-radius: var(--border-radius);
     backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
 }
 
 .contact-form input,
 .contact-form select,
 .contact-form textarea {
-    padding: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--border-radius);
     font-size: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.contact-form input:hover,
+.contact-form select:hover,
+.contact-form textarea:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: white;
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .contact-form input::placeholder,
 .contact-form select::placeholder,
 .contact-form textarea::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.contact-form textarea {
-    height: 150px;
-    resize: vertical;
+    color: var(--light-text);
 }
 
 .submit-button {
@@ -611,4 +632,77 @@ footer {
 .pricing-card.animate {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Enhanced hover effects for buttons and cards */
+.cta-button,
+.pricing-button,
+.submit-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.cta-button:hover,
+.pricing-button:hover,
+.submit-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature-card {
+    transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.feature-card:hover i {
+    transform: scale(1.1) rotate(5deg);
+    color: var(--accent-color);
+}
+
+.feature-card i {
+    transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* Special dopamine-inducing effect for the main CTA */
+.cta-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+/* Add smooth transitions for all interactive elements */
+a, button, input, select, textarea {
+    transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
 } 
