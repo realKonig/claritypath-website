@@ -40,6 +40,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Configuration -->
+    <script src="config.js"></script>
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -47,40 +50,17 @@
         "@type": "ProfessionalService",
         "name": "clarityPath.ai",
         "description": "Simple AI-driven consulting for high-ticket business automation",
-        "url": "<%= process.env.SITE_URL %>",
-        "logo": "<%= process.env.SITE_URL %>/assets/images/optimized/logo.webp",
-        "image": "<%= process.env.SITE_URL %>/assets/images/optimized/logo.webp",
+        "url": "https://claritypath.ai",
+        "logo": "https://claritypath.ai/assets/images/optimized/logo.webp",
+        "image": "https://claritypath.ai/assets/images/optimized/logo.webp",
         "priceRange": "$$$",
         "address": {
             "@type": "PostalAddress",
             "addressCountry": "US"
         },
-        "offers": [
-            {
-                "@type": "Offer",
-                "name": "Launch Blueprint",
-                "price": "5000",
-                "priceCurrency": "USD",
-                "description": "Get clear on your offer, build a simple funnel, and launch quickly."
-            },
-            {
-                "@type": "Offer",
-                "name": "Automation Builder",
-                "price": "7500",
-                "priceCurrency": "USD",
-                "description": "Everything in Launch Blueprint, plus we build your automated lead-gen systems."
-            },
-            {
-                "@type": "Offer",
-                "name": "clarityPath Elite",
-                "price": "12000",
-                "priceCurrency": "USD",
-                "description": "Full custom implementation with long-term growth support."
-            }
-        ],
         "sameAs": [
-            "<%= process.env.LINKEDIN_URL %>",
-            "<%= process.env.TWITTER_URL %>"
+            "https://linkedin.com/company/claritypathAI",
+            "https://twitter.com/claritypathAI"
         ]
     }
     </script>
@@ -313,9 +293,14 @@
                 <!-- Calendly inline widget begin -->
                 <div 
                     class="calendly-inline-widget"
-                    data-url="https://calendly.com/mhsutton07/45min"
                     style="min-width:320px;height:700px;">
                 </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const widget = document.querySelector('.calendly-inline-widget');
+                        widget.setAttribute('data-url', config.CALENDLY_URL);
+                    });
+                </script>
                 <!-- Calendly inline widget end -->
             </div>
         </section>
@@ -339,8 +324,8 @@
             <div class="footer-section">
                 <h4>Connect</h4>
                 <div class="social-links">
-                    <a href="<%= process.env.LINKEDIN_URL %>" aria-label="Connect on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-                    <a href="<%= process.env.TWITTER_URL %>" aria-label="Follow on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://linkedin.com/company/claritypathAI" aria-label="Connect on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/claritypathAI" aria-label="Follow on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>

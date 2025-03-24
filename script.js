@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
                         
                         Calendly.initPopupWidget({
-                            url: process.env.CALENDLY_URL,
+                            url: config.CALENDLY_URL,
                             onClose: () => {
                                 // Remove loading state
                                 button.classList.remove('loading');
