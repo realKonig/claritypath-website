@@ -295,12 +295,6 @@
                     class="calendly-inline-widget"
                     style="min-width:320px;height:700px;">
                 </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const widget = document.querySelector('.calendly-inline-widget');
-                        widget.setAttribute('data-url', config.CALENDLY_URL);
-                    });
-                </script>
                 <!-- Calendly inline widget end -->
             </div>
         </section>
@@ -333,31 +327,10 @@
             <p>&copy; 2024 clarityPath.ai. All rights reserved.</p>
         </div>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Update all Apply Now buttons to open Calendly popup
-            const applyButtons = document.querySelectorAll('.cta-button, .pricing-button');
-            applyButtons.forEach(button => {
-                if (button.getAttribute('href') === '#contact') {
-                    button.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        // Check if user clicked to scroll to contact section
-                        if (window.innerWidth >= 768) { // Desktop: show popup
-                            Calendly.initPopupWidget({
-                                url: 'https://calendly.com/mhsutton07/45min'
-                            });
-                        } else { // Mobile: scroll to inline widget
-                            document.querySelector('#contact').scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+
+    <!-- Load scripts in correct order -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 

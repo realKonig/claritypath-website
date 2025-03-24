@@ -1,6 +1,3 @@
-// Load environment variables
-require('dotenv').config();
-
 // Initialize AOS with custom settings
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize AOS once with combined settings
@@ -135,6 +132,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize Calendly
     initCalendlyButtons();
+
+    // Initialize Calendly inline widget
+    const initCalendlyInline = () => {
+        const widget = document.querySelector('.calendly-inline-widget');
+        if (widget) {
+            widget.setAttribute('data-url', config.CALENDLY_URL);
+        }
+    };
+
+    // Initialize inline widget
+    initCalendlyInline();
 
     // Add keyboard navigation support
     const cards = document.querySelectorAll('.feature-card, .benefit-item, .pricing-card');
