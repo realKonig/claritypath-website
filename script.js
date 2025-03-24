@@ -1,3 +1,6 @@
+// Load environment variables
+require('dotenv').config();
+
 // Initialize AOS with custom settings
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize AOS once with combined settings
@@ -109,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
                         
                         Calendly.initPopupWidget({
-                            url: 'https://calendly.com/mhsutton07/45min',
+                            url: process.env.CALENDLY_URL,
                             onClose: () => {
                                 // Remove loading state
                                 button.classList.remove('loading');
