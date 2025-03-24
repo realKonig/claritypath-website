@@ -15,10 +15,9 @@ build/
 # IDE and editor files
 .vscode/
 .idea/
-*.swp
-*.swo
+*.sublime-project
+*.sublime-workspace
 .DS_Store
-Thumbs.db
 
 # Logs
 *.log
@@ -26,24 +25,24 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
 # Testing
 coverage/
 
 # Temporary files
-tmp/
+*.tmp
+*.temp
+.tmp/
 temp/
 
-# Project specific
+# Personal TODO files
 TODO.md
 NOTES.md
 *.todo
 *.notes
-assets/images/original/
-optimize-images.js 
-call_scripts/
+
+# Optimized images (should be generated on build)
+assets/images/optimized/
+
+# Local development files
+*.local
+local.* 
