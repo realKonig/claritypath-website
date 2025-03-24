@@ -1,6 +1,57 @@
 // Initialize AOS with custom settings
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS once with combined settings
+    // Wait for Calendly widget to load
+    const initializeCalendly = () => {
+        // Initialize Calendly inline widget
+        const initCalendlyInline = () => {
+            const widget = document.querySelector('.calendly-inline-widget');
+            if (widget && config && config.CALENDLY_URL) {
+                widget.setAttribute('data-url', config.CALENDLY_URL);
+            }
+        };
+
+        // Initialize Calendly buttons
+        const initCalendlyButtons = () => {
+            const applyButtons = document.querySelectorAll('.cta-button, .pricing-button');
+            applyButtons.forEach(button => {
+                if (button.getAttribute('href') === '#contact') {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (window.innerWidth >= 768) {
+                            // Show loading state
+                            button.classList.add('loading');
+                            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                            
+                            if (window.Calendly) {
+                                Calendly.initPopupWidget({
+                                    url: config.CALENDLY_URL,
+                                    onClose: () => {
+                                        // Remove loading state
+                                        button.classList.remove('loading');
+                                        button.textContent = button.getAttribute('data-original-text') || 'Book Your Strategy Call';
+                                    }
+                                });
+                            }
+                        } else {
+                            const contactSection = document.querySelector('#contact');
+                            if (contactSection) {
+                                contactSection.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        };
+
+        // Initialize both Calendly components
+        initCalendlyInline();
+        initCalendlyButtons();
+    };
+
+    // Initialize AOS
     AOS.init({
         duration: 800,
         easing: 'cubic-bezier(0.2, 1, 0.3, 1)',
@@ -96,54 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Initialize Calendly integration
-    const initCalendlyButtons = () => {
-        const applyButtons = document.querySelectorAll('.cta-button, .pricing-button');
-        applyButtons.forEach(button => {
-            if (button.getAttribute('href') === '#contact') {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (window.innerWidth >= 768) {
-                        // Show loading state
-                        button.classList.add('loading');
-                        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
-                        
-                        Calendly.initPopupWidget({
-                            url: config.CALENDLY_URL,
-                            onClose: () => {
-                                // Remove loading state
-                                button.classList.remove('loading');
-                                button.textContent = button.getAttribute('data-original-text') || 'Book Your Strategy Call';
-                            }
-                        });
-                    } else {
-                        const contactSection = document.querySelector('#contact');
-                        if (contactSection) {
-                            contactSection.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    }
-                });
-            }
-        });
-    };
-
-    // Initialize Calendly
-    initCalendlyButtons();
-
-    // Initialize Calendly inline widget
-    const initCalendlyInline = () => {
-        const widget = document.querySelector('.calendly-inline-widget');
-        if (widget) {
-            widget.setAttribute('data-url', config.CALENDLY_URL);
-        }
-    };
-
-    // Initialize inline widget
-    initCalendlyInline();
-
     // Add keyboard navigation support
     const cards = document.querySelectorAll('.feature-card, .benefit-item, .pricing-card');
     cards.forEach(card => {
@@ -158,6 +161,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Initialize Calendly after a short delay to ensure widget.js is loaded
+    setTimeout(initializeCalendly, 1000);
 });
 
 // Initialize cookie consent with improved accessibility
